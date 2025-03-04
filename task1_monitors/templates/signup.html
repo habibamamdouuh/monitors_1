@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign Up</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        .container {
+            max-width: 400px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+<p style="font-size: 18px; color: #555; text-align: center; margin-bottom: 20px; font-family: Arial, sans-serif;">
+    Please Enter Your Baby's Info:
+</p>
+<div class="container">
+    <h2 class="mb-4">Sign Up</h2>
+
+{% if  msg %}
+    <div class="alert alert-warning" role="alert">{{ msg }}</div>
+
+{% endif %}
+
+
+    <form action="/signup" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <input type="text" class="form-control" name="firstname" placeholder="Baby's First Name" required>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="lastname" placeholder="Baby's Last Name" required>
+        </div>
+
+        <div class="form-group">
+            <input type="email" class="form-control" name="email" placeholder="Parent's Email" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+        </div>
+         <div class="form-group">
+            <input type="password" class="form-control" id="confirmPassword" name="confirm_password"
+                   placeholder="Confirm Password" required>
+            <small id="passwordHelp" class="form-text text-danger d-none">Passwords do not match.</small>
+        </div>
+         <div class="form-group">
+            <input type="text" class="form-control" name="baby_gender" placeholder="Baby's Gender" required>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="parent1" placeholder="Parent 1" required>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="parent2" placeholder="Parent 2" >
+        </div>
+         <div class="form-group">
+            <input type="number" class="form-control" name="contact" placeholder="Parent's Phone Number" required>
+        </div>
+         <div class="form-group">
+            <input type="text" class="form-control" name="address" placeholder="Address" required>
+        </div>
+
+        <button onclick="/login" type="submit" class="btn btn-primary btn-block">Sign Up</button>
+        <p class="text-center">Have an account? <a href="/login">Login</a></p>
+    </form>
+</div>
+<script>
+    document.getElementById('confirmPassword').addEventListener('input', function () {
+        const password = document.getElementById('password').value;
+        const confirmPassword = this.value;
+        const passwordHelp = document.getElementById('passwordHelp');
+
+        if (password !== confirmPassword) {
+            passwordHelp.classList.remove('d-none');
+        } else {
+            passwordHelp.classList.add('d-none');
+        }
+    });
+</script>
+</body>
+</html>
